@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Search Image</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://use.typekit.net/umb2cxy.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body id="main-body" onload="onLoad()">
+	<header id="main-header">
+		<div class="container full-image-retrieve">
+			<div class="row justify-content-center">
+				<div class="col align-self-center typingDescription">
+					<h2>Image Search App</h2>
+					<p id="auto-text">Try searching <span class="auto-text"></span></p>
+					<div class="form-box">
+						<input type="text" id="search_image_text" class="search-image"
+							onkeypress="return searchKeyPress(event);" />
+						<button class="search-btn" id="sear-img" onClick="searchPhotos(); showContents()"><i
+								class="fa fa-search"></i></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div id="main-div"></div>
+
+	<button onclick="goToTop()" id="goToTopButton"><img src="Images/up.png" height="17px" width="17px"></img></button>
+
+	<script src="search.js"></script>
+
+	<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+	<script type="text/javascript">
+
+		function clearContents() {
+			var informationBox = document.getElementById('main-div');
+			informationBox.innerHTML = '';
+		}
+
+		function searchKeyPress(e) {
+			e = e || window.event;
+			if (e.keyCode == 13) {
+				document.getElementById('sear-img').click();
+				return false;
+			}
+			return true;
+		}
+
+		function showContents() {
+			clearContents();
+
+			let i = `<div class="container">
+						<div class="image-gallery justify-content-center" id="imageResult">
+							<div class="row-main" id="result"></div>
+							<div class="row-main" id="newresult"></div>
+							<img id="searchedImage" onClick="enlargePhoto(src)"></img>
+							<img id="searchedImage" onClick="enlargePhotonew(src)"></img>
+							<div id="enlargedImage" class="enlarged">
+								<span class="close-new">&times;</span>
+								<div>
+									<h2 class="container" id="author-name"></h2>
+									<img class="enlarged-content" id="img01" height="500px" align="justify-content-center">
+									<b class="container" id="caption"></b>
+								</div>
+							</div>
+						</div>
+						<div class="row justify-content-center">
+							<div class="col align-self-center">
+								<div class="pagination justify-content-center">
+									<div class="page-item">
+										<button class="search-btn" href="#" onClick="prevPage()" id="btn_prev" value="btn_prev" disabled>Previous</button>
+									</div>
+									<div class="page-item">
+										<button class="search-btn" href="#" onClick="nextPage()" id="btn_next" value="btn_next">Next</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+						`
+			$("#main-div").append(i);
+		}
+
+		var typed = new Typed(".auto-text", {
+			strings: ["Beaches", "Texture Backgrounds", "Working Out", "Railway", "Street Photography", "Animals", "Wallpapers", "Technology", "Sports", "Taj Mahal", "Pink", "Business", "New Zealand", "Pizza", "Fashion", "Architecture"],
+			typeSpeed: 100,
+			backSpeed: 50,
+			loop: true
+		})
+
+		function onLoad() {
+			// Get the button
+			let goToTopButton = document.getElementById("goToTopButton");
+
+			// When the user scrolls down 20px from the top of the document, show the button
+			window.onscroll = function () { scrollFunction(goToTopButton) };
+
+		}
+
+		function scrollFunction(goToTopButton) {
+			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+				goToTopButton.style.display = "block";
+			} else {
+				goToTopButton.style.display = "none";
+			}
+		}
+
+		function goToTop() {
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
+		}
+
+	</script>
+
+	<div class="footer-basic">
+		<footer>
+			<div class="social">
+				<a href="https://linkedin.com/in/janki1028" target="_blank">
+					<i class="icon ion-social-linkedin"></i>
+				</a>
+				<a href="https://janki1028.wordpress.com" target="_blank">
+					<i class="icon ion-social-wordpress"></i>
+				</a>
+				<a href="https://github.com/janki28" target="_blank">
+					<i class="icon ion-social-github"></i>
+				</a>
+			</div>
+			<p class="copyright">Janki Patel © 2024</p>
+		</footer>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+
+</html>
